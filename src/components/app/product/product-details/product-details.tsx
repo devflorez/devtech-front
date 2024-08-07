@@ -1,6 +1,7 @@
 import React from "react";
 import { getProductBySlug } from "@/services/products.service";
 import ProductCarousel from "../product-carousel";
+import AddProductToCart from "../../ cart/add-product-to-cart/add-product-to-cart";
 async function ProductDetails({ slug }: { slug: string }) {
   const { data } = await getProductBySlug(slug);
   return (
@@ -26,10 +27,7 @@ async function ProductDetails({ slug }: { slug: string }) {
 
         <p>{data.description}</p>
         <footer className="flex flex-col gap-2 justify-start items-start border-t border-gray-200 pt-4 w-full">
-          <p className="text-gray-600">
-            Unidades disponibles: { " " }
-            {data.stock}
-          </p>
+          <AddProductToCart product={data} />
         </footer>
       </div>
     </section>

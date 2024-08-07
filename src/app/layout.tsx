@@ -4,6 +4,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "../components/core/header";
 import Footer from "@/components/core/footer";
+import ReduxWrapper from "@/redux/redux-wrapper";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -22,11 +23,13 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${montserrat.className}`}>
-        <Header />
-        <main className="flex flex-col items-center justify-center w-full min-h-screen py-4">
-          {children}
-        </main>
-        <Footer />
+        <ReduxWrapper>
+          <Header />
+          <main className="flex flex-col items-center justify-center w-full min-h-screen py-4">
+            {children}
+          </main>
+          <Footer />
+        </ReduxWrapper>
       </body>
     </html>
   );

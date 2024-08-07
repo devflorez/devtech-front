@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import Search from "../search";
-import { ShoppingCart } from "@phosphor-icons/react/dist/ssr";
+
+import CartItemNavigation from "@/components/app/ cart/cart-item-navigation";
 export default function navbar() {
   return (
     <header className=" container mx-auto px-4 flex items-center justify-between w-full h-16 py-4 border-b">
@@ -17,12 +18,7 @@ export default function navbar() {
       </Link>
       <div className="flex items-center gap-4">
         <Search />
-        <Link
-          href="/cart"
-          className="flex items-center gap-2 text-gray-800 cursor-pointer"
-        >
-          <ShoppingCart className="text-gray-800" />
-        </Link>
+        <CartItemNavigation />
       </div>
     </header>
   );

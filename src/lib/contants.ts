@@ -290,11 +290,11 @@ export const PRODUCTS_WITH_CAROUSEL: IProductDetail[] = [
     slug: "monitor-4k",
     images: [
       {
-        url: "https://placehold.co/800?text=Monitor+4K+UHD+2&font=montserrat",
+        url: "https://placehold.co/800?text=Monitor+4K+UHD+1&font=montserrat",
         altText: "Monitor 4K UHD 1",
       },
       {
-        url: "https://placehold.co/800?text=Monitor+4K+UHD+1&font=montserrat",
+        url: "https://placehold.co/800?text=Monitor+4K+UHD+2&font=montserrat",
         altText: "Monitor 4K UHD 2",
       },
     ],
@@ -340,11 +340,11 @@ export const PRODUCTS_WITH_CAROUSEL: IProductDetail[] = [
     slug: "auriculares-cancelacion-ruido",
     images: [
       {
-        url: "https://placehold.co/800?text=Auriculares+con+Cancelación+de+Ruido&font=montserrat",
+        url: "https://placehold.co/800?text=Auriculares+con+Cancelación+de+Ruido+1&font=montserrat",
         altText: "Auriculares con Cancelación de Ruido 1",
       },
       {
-        url: "https://placehold.co/800?text=Auriculares+con+Cancelación+de+Ruido&font=montserrat",
+        url: "https://placehold.co/800?text=Auriculares+con+Cancelación+de+Ruido+2&font=montserrat",
         altText: "Auriculares con Cancelación de Ruido 2",
       },
     ],
@@ -390,11 +390,11 @@ export const PRODUCTS_WITH_CAROUSEL: IProductDetail[] = [
     slug: "teclado-usb",
     images: [
       {
-        url: "https://placehold.co/800?text=Teclado+Numérico+USB&font=montserrat",
+        url: "https://placehold.co/800?text=Teclado+Numérico+USB+1&font=montserrat",
         altText: "Teclado Numérico USB 1",
       },
       {
-        url: "https://placehold.co/800?text=Teclado+Numérico+USB&font=montserrat",
+        url: "https://placehold.co/800?text=Teclado+Numérico+USB+2&font=montserrat",
         altText: "Teclado Numérico USB 2",
       },
     ],
@@ -415,11 +415,11 @@ export const PRODUCTS_WITH_CAROUSEL: IProductDetail[] = [
     slug: "base-refrigeracion-portatil",
     images: [
       {
-        url: "https://placehold.co/800?text=Base+de+Refrigeración+para+Portátil&font=montserrat",
+        url: "https://placehold.co/800?text=Base+de+Refrigeración+para+Portátil+1&font=montserrat",
         altText: "Base de Refrigeración para Portátil 1",
       },
       {
-        url: "https://placehold.co/800?text=Base+de+Refrigeración+para+Portátil&font=montserrat",
+        url: "https://placehold.co/800?text=Base+de+Refrigeración+para+Portátil+2&font=montserrat",
         altText: "Base de Refrigeración para Portátil 2",
       },
     ],
@@ -440,11 +440,11 @@ export const PRODUCTS_WITH_CAROUSEL: IProductDetail[] = [
     slug: "escritorio-ajustable",
     images: [
       {
-        url: "https://placehold.co/800?text=Escritorio+Ajustable&font=montserrat",
+        url: "https://placehold.co/800?text=Escritorio+Ajustable+1&font=montserrat",
         altText: "Escritorio Ajustable 1",
       },
       {
-        url: "https://placehold.co/800?text=Escritorio+Ajustable&font=montserrat",
+        url: "https://placehold.co/800?text=Escritorio+Ajustable+2&font=montserrat",
         altText: "Escritorio Ajustable 2",
       },
     ],
@@ -465,11 +465,11 @@ export const PRODUCTS_WITH_CAROUSEL: IProductDetail[] = [
     slug: "camara-web-full-hd",
     images: [
       {
-        url: "https://placehold.co/800?text=Cámara+Web+Full+HD&font=montserrat",
+        url: "https://placehold.co/800?text=Cámara+Web+Full+HD+1&font=montserrat",
         altText: "Cámara Web Full HD 1",
       },
       {
-        url: "https://placehold.co/800?text=Cámara+Web+Full+HD&font=montserrat",
+        url: "https://placehold.co/800?text=Cámara+Web+Full+HD+2&font=montserrat",
         altText: "Cámara Web Full HD 2",
       },
     ],
@@ -490,11 +490,11 @@ export const PRODUCTS_WITH_CAROUSEL: IProductDetail[] = [
     slug: "lampara-escritorio-led",
     images: [
       {
-        url: "https://placehold.co/800?text=Lámpara+de+Escritorio+LED&font=montserrat",
+        url: "https://placehold.co/800?text=Lámpara+de+Escritorio+LED+1&font=montserrat",
         altText: "Lámpara de Escritorio LED 1",
       },
       {
-        url: "https://placehold.co/800?text=Lámpara+de+Escritorio+LED&font=montserrat",
+        url: "https://placehold.co/800?text=Lámpara+de+Escritorio+LED+2&font=montserrat",
         altText: "Lámpara de Escritorio LED 2",
       },
     ],
@@ -515,11 +515,11 @@ export const PRODUCTS_WITH_CAROUSEL: IProductDetail[] = [
     slug: "cable-usb-c-a-usb-a",
     images: [
       {
-        url: "https://placehold.co/800?text=Cable+USB-C+a+USB-A&font=montserrat",
+        url: "https://placehold.co/800?text=Cable+USB-C+a+USB-A+1&font=montserrat",
         altText: "Cable USB-C a USB-A 1",
       },
       {
-        url: "https://placehold.co/800?text=Cable+USB-C+a+USB-A&font=montserrat",
+        url: "https://placehold.co/800?text=Cable+USB-C+a+USB-A+2&font=montserrat",
         altText: "Cable USB-C a USB-A 2",
       },
     ],
@@ -540,11 +540,11 @@ export const PRODUCTS_WITH_CAROUSEL: IProductDetail[] = [
     slug: "hub-usb-3.0",
     images: [
       {
-        url: "https://placehold.co/800?text=Hub+USB+3.0&font=montserrat",
+        url: "https://placehold.co/800?text=Hub+USB+3.0+1&font=montserrat",
         altText: "Hub USB 3.0 1",
       },
       {
-        url: "https://placehold.co/800?text=Hub+USB+3.0&font=montserrat",
+        url: "https://placehold.co/800?text=Hub+USB+3.0+2&font=montserrat",
         altText: "Hub USB 3.0 2",
       },
     ],
@@ -565,11 +565,11 @@ export const PRODUCTS_WITH_CAROUSEL: IProductDetail[] = [
     slug: "microfono-usb",
     images: [
       {
-        url: "https://placehold.co/800?text=Micrófono+Condensador+USB&font=montserrat",
+        url: "https://placehold.co/800?text=Micrófono+Condensador+USB+1&font=montserrat",
         altText: "Micrófono Condensador USB 1",
       },
       {
-        url: "https://placehold.co/800?text=Micrófono+Condensador+USB&font=montserrat",
+        url: "https://placehold.co/800?text=Micrófono+Condensador+USB+2&font=montserrat",
         altText: "Micrófono Condensador USB 2",
       },
     ],
