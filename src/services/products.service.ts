@@ -1,4 +1,4 @@
-import { IProduct, IProductWithCarousel } from "@/interfaces/products.interface";
+import { IProduct, IProductDetail } from "@/interfaces/products.interface";
 import {
   IQueryParams,
   TProductsResponse,
@@ -42,7 +42,7 @@ export async function getProductBySlug(
     if (!product) {
       return {
         success: false,
-        data: {} as IProductWithCarousel,
+        data: {} as IProductDetail,
         error: "Product not found",
       };
     }
@@ -54,7 +54,7 @@ export async function getProductBySlug(
   } catch (error) {
     return {
       success: false,
-      data: {} as IProductWithCarousel,
+      data: {} as IProductDetail,
       error: (error as Error).message,
     };
   }

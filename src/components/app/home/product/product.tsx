@@ -5,7 +5,7 @@ import { IProduct } from "@/interfaces/products.interface";
 const Product = ({
   id,
   name,
-  description,
+  shortDescription,
   price,
   stock,
   image,
@@ -24,7 +24,7 @@ const Product = ({
       />
       <div className="flex flex-col gap-2 justify-between">
         <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
-        <p className="text-gray-600">{description}</p>
+        <p className="text-gray-600">{shortDescription}</p>
         <p className="text-gray-800 font-semibold">
           {new Intl.NumberFormat("es-ES", {
             style: "currency",

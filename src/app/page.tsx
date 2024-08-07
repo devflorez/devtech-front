@@ -37,7 +37,7 @@ export default async function Home({
               key={product.id}
               id={product.id}
               name={product.name}
-              description={product.description}
+              shortDescription={product.shortDescription}
               price={product.price}
               stock={product.stock}
               image={product.image}

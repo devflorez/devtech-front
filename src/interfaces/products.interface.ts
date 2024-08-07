@@ -8,13 +8,14 @@ export interface IProduct {
   name: string;
   price: number;
   image: IProductImage;
-  description: string;
+  shortDescription: string;
   stock: number;
   slug: string;
 }
 
-export interface IProductWithCarousel extends IProduct {
+export interface IProductDetail extends IProduct {
   images: IProductImage[];
+  description: string;
 }
 
 

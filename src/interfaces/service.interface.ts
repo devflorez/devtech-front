@@ -1,4 +1,4 @@
-import { IProduct, IProductWithCarousel } from "./products.interface";
+import { IProduct, IProductDetail } from "./products.interface";
 
 export interface IQueryParams {
   page: string;
@@ -14,4 +14,4 @@ export interface IResponse<T> {
 
 export type TProductsResponse = IResponse<IProduct[]>;
 
-export type TProductResponse = IResponse<IProductWithCarousel>;
+export type TProductResponse = IResponse<IProductDetail>;
