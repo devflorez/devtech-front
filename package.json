@@ -10,6 +10,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.418.0",
@@ -17,7 +18,8 @@
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.4.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "use-debounce": "^10.0.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
