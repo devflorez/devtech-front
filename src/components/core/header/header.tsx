@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Search from "../search";
 
-import CartItemNavigation from "@/components/app/ cart/cart-item-navigation";
+import CartItemNavigation from "@/components/app/cart/cart-item-navigation";
 export default function navbar() {
   return (
     <header className=" container mx-auto px-4 flex items-center justify-between w-full h-16 py-4 border-b">

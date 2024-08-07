@@ -1,7 +1,7 @@
 import React from "react";
 import { getProductBySlug } from "@/services/products.service";
 import ProductCarousel from "../product-carousel";
-import AddProductToCart from "../../ cart/add-product-to-cart/add-product-to-cart";
+import AddProductToCart from "../../cart/add-product-to-cart/add-product-to-cart";
 async function ProductDetails({ slug }: { slug: string }) {
   const { data } = await getProductBySlug(slug);
   return (
