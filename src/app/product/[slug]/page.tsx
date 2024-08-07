@@ -1,5 +1,5 @@
 import ProductDetails from "@/components/app/product/product-details";
-
+import FeaturedProducts from "@/components/app/product/featured-products";
 export default function Product({
   params: { slug },
 }: {
@@ -8,10 +8,11 @@ export default function Product({
   };
 }) {
   return (
-    <div className="container mx-auto px-0 min-h-screen">
+    <div className="container flex flex-col gap-12 mx-auto px-0 min-h-screen">
       <ProductDetails 
         slug={slug}
       />
+      <FeaturedProducts />
     </div>
   );
 }

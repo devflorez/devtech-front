@@ -59,3 +59,23 @@ export async function getProductBySlug(
     };
   }
 }
+
+
+
+export async function getFeaturedProducts(): Promise<TProductsResponse> {
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const data = PRODUCTS.slice(0, 6);
+    return {
+      success: true,
+      data,
+      error: "",
+    };
+  } catch (error) {
+    return {
+      success: false,
+      data: [],
+      error: (error as Error).message,
+    };
+  }
+}

@@ -14,7 +14,7 @@ const Product = ({
   return (
     <Link
       href={`/product/${slug}`}
-      className="flex flex-col gap-2  border-gray-100 rounded-md hover:border-gray-300 p-4 hover:border"
+      className="flex flex-col gap-2  border-gray-100 rounded-md hover:border-gray-300 p-4 hover:border min-w-72"
       id={id.toString()}
     >
       <img
