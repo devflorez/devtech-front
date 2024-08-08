@@ -1,5 +1,5 @@
 import CartContent from "@/components/app/cart/cart-content";
-
+export const maxDuration = 60;
 export default function Cart() {
   return (
     <div className="container flex flex-col gap-2 mx-auto px-0 min-h-screen">

@@ -1,5 +1,5 @@
 import CheckoutContent from "@/components/app/checkout/checkout-content";
-
+export const maxDuration = 60;
 export default function Checkout() {
   return (
     <div className="container flex flex-col gap-4 mx-auto px-0 min-h-screen">

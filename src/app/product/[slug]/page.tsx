@@ -3,6 +3,7 @@ import ProductDetailsSkeleton from "@/components/app/product/product-details/pro
 import FeaturedProducts from "@/components/app/product/featured-products/featured-products";
 import FeaturedProductsSkeleton from "@/components/app/product/featured-products/featured-products-skeleton";
 import { Suspense } from "react";
+export const maxDuration = 60;
 export default function Product({
   params: { slug },
 }: {
@@ -10,6 +11,7 @@ export default function Product({
     slug: string;
   };
 }) {
+  
   return (
     <div className="container flex flex-col gap-12 mx-auto px-0 min-h-screen">
       <Suspense fallback={<ProductDetailsSkeleton />}>

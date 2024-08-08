@@ -3,6 +3,9 @@ import { ISearchParams } from "@/interfaces/page.interface";
 import ProductList from "@/components/app/home/product-list/product-list";
 import ProductListSkeleton from "@/components/app/home/product-list/product-list-skeleton";
 import { Suspense } from "react";
+
+export const maxDuration = 60;
+
 export default async function Home({
   searchParams,
 }: {
