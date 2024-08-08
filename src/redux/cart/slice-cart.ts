@@ -50,7 +50,9 @@ export const INITIAL_STATE_CART: ICartState = {
 };
 
 const loadCartFromLocalStorage = (): ICartState => {
+  if (typeof window === "undefined") return INITIAL_STATE_CART;
   try {
+    if(localStorage === undefined) return INITIAL_STATE_CART;
     const serializedState = localStorage.getItem("cart");
     if (serializedState === null) {
       return INITIAL_STATE_CART;

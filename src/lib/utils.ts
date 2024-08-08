@@ -7,10 +7,10 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatPrice(price: number) {
-  return price.toLocaleString("en", {
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "COP",
-  });
+  }).format(price);
 }
 
 export function formatPriceShort(price: number) {

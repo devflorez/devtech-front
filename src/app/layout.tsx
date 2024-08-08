@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
@@ -26,7 +26,9 @@ export default function RootLayout({
         <ReduxWrapper>
           <Header />
           <main className="flex flex-col items-center justify-center w-full min-h-screen py-4">
+            <Suspense fallback={<div>Cargando...</div>}>
             {children}
+            </Suspense>
           </main>
           <Footer />
         </ReduxWrapper>

@@ -44,8 +44,8 @@ const CartTable = ({ cart }: ICCartTableProps) => {
             <TableRow key={item.id}>
               <TableCell className="flex items-center gap-2">
                 <img
-                  src={item.image.url}
-                  alt={item.image.altText}
+                  src={item.imageUrl}
+                  alt={item.imageAltText}
                   className="w-24 h-24 object-cover rounded-md"
                 />
                 <span className="text-sm font-semibold text-gray-800">

@@ -6,6 +6,11 @@ import { formatPrice } from "@/lib/utils";
 
 async function ProductDetails({ slug }: { slug: string }) {
   const { data } = await getProductBySlug(slug);
+
+  if(!data) {
+    return <div>Product not found</div>
+  }
+
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-start justify-start px-4 sm:px-6 lg:px-8">
       <ProductCarousel images={data.images} />
