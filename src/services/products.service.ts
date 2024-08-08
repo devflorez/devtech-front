@@ -14,10 +14,16 @@ export async function getProducts(
     const response = await fetch(
       API_URL_PRODUCTS +
         "?" +
-        new URLSearchParams(Object.entries(params)).toString()
+        new URLSearchParams(Object.entries(params)).toString(),
+      {
+        cache: "no-cache",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
     const data = await response.json();
-
+    console.log("Response product", data);
     if (!response.ok) {
       return {
         success: false,
@@ -73,7 +79,10 @@ export async function getProductBySlug(
 
 export async function getFeaturedProducts(): Promise<TProductsResponse> {
   try {
-    const response = await fetch(`${API_URL_PRODUCTS}/featured`);
+    const response = await fetch(`${API_URL_PRODUCTS}/featured`, {
+      cache: "no-cache",
+    });
+
     const data = await response.json();
     if (!response.ok) {
       return {
