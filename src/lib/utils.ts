@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { ZodIssue } from 'zod';
+import { ZodIssue } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -13,18 +13,29 @@ export function formatPrice(price: number) {
   });
 }
 
+export function formatPriceShort(price: number) {
+  if (price >= 1000000) {
+    return `${price / 1000000}M`;
+  }
+
+  if (price >= 1000) {
+    return `${price / 1000}K`;
+  }
+
+  return price;
+}
 
 export const errorMessages = (errors: string[]) => {
-  if (errors.length === 0) return '';
+  if (errors.length === 0) return "";
 
-  const text = errors.join(', ');
+  const text = errors.join(", ");
 
   return text;
 };
 
 export const findErrors = (
   fieldName: string,
-  errors: ZodIssue[] | null | undefined,
+  errors: ZodIssue[] | null | undefined
 ) => {
   if (!errors) return [];
   return errors

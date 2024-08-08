@@ -1,6 +1,6 @@
 import React from "react";
 import { getFeaturedProducts } from "@/services/products.service";
-import Product from "@/components/app/home/product";
+import Product from "@/components/app/home/product/product";
 
 async function FeaturedProducts() {
   const { data } = await getFeaturedProducts();
@@ -18,8 +18,10 @@ async function FeaturedProducts() {
             shortDescription={product.shortDescription}
             price={product.price}
             stock={product.stock}
-            image={product.image}
+            imageUrl={product.imageUrl}
+            imageAltText={product.imageAltText}
             slug={product.slug}
+            isFeatured={product.isFeatured}
           />
         ))}
       </div>

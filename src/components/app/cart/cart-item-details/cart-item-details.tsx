@@ -18,8 +18,8 @@ const CartItemDetails = ({ cart }: ICartItemDetailsProps) => {
       {cart.map((item) => (
         <li key={item.id} className="flex items-center gap-2">
           <img
-            src={item.image.url}
-            alt={item.image.altText}
+            src={item.imageUrl}
+            alt={item.imageAltText}
             className="w-24 h-24 object-cover rounded-md"
           />
           <div className="flex flex-col gap-1">

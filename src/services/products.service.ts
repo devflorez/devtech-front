@@ -1,25 +1,34 @@
-import { IProduct, IProductDetail } from "@/interfaces/products.interface";
+import { IProductDetail } from "@/interfaces/products.interface";
 import {
   IQueryParams,
   TProductsResponse,
   TProductResponse,
 } from "@/interfaces/service.interface";
-import { PRODUCTS, PRODUCTS_WITH_CAROUSEL } from "@/lib/contants";
+
+const API_URL_PRODUCTS = process.env.API_URL + "/v1/products";
 
 export async function getProducts(
   params: IQueryParams
 ): Promise<TProductsResponse> {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    const { page, limit, query } = params;
-    const start = (parseInt(page) - 1) * parseInt(limit);
-    const end = start + parseInt(limit);
-    const data = PRODUCTS.filter((product) =>
-      product.name.toLowerCase().includes(query?.toLowerCase() || "")
+    const response = await fetch(
+      API_URL_PRODUCTS +
+        "?" +
+        new URLSearchParams(Object.entries(params)).toString()
     );
+    const data = await response.json();
+
+    if (!response.ok) {
+      return {
+        success: false,
+        data: [],
+        error: data.message,
+      };
+    }
+
     return {
       success: true,
-      data: data.slice(start, end) as IProduct[],
+      data: data.products,
       error: "",
     };
   } catch (error) {
@@ -35,20 +44,22 @@ export async function getProductBySlug(
   slug: string
 ): Promise<TProductResponse> {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    const product = PRODUCTS_WITH_CAROUSEL.find(
-      (product) => product.slug === slug
-    );
-    if (!product) {
+    const response = await fetch(`${API_URL_PRODUCTS}/${slug}`, {
+      cache: "no-cache",
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
       return {
         success: false,
         data: {} as IProductDetail,
-        error: "Product not found",
+        error: data.message,
       };
     }
+
     return {
       success: true,
-      data: product,
+      data,
       error: "",
     };
   } catch (error) {
@@ -60,15 +71,21 @@ export async function getProductBySlug(
   }
 }
 
-
-
 export async function getFeaturedProducts(): Promise<TProductsResponse> {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    const data = PRODUCTS.slice(0, 6);
+    const response = await fetch(`${API_URL_PRODUCTS}/featured`);
+    const data = await response.json();
+    if (!response.ok) {
+      return {
+        success: false,
+        data: [],
+        error: data.message,
+      };
+    }
+
     return {
       success: true,
-      data,
+      data: data,
       error: "",
     };
   } catch (error) {

@@ -20,12 +20,8 @@ const CartItemNavigation = () => {
   const cart = useAppSelector((state) => state.cart);
 
   return (
-    <Sheet
-    
-    >
-      <SheetTrigger
-      disabled={cart.cart.length === 0}
-      >
+    <Sheet>
+      <SheetTrigger disabled={cart.cart.length === 0}>
         <CartIcon total={cart.total} />
       </SheetTrigger>
       <SheetContent className="flex flex-col gap-4 justify-between">

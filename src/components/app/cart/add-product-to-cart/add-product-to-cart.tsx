@@ -44,33 +44,34 @@ const AddProductToCart = ({ product }: { product: IProductDetail }) => {
   );
 
   return (
-    <div className="flex flex-col gap-2 justify-start items-start">
-      <span className="text-2xl font-semibold text-gray-800">
+    <div className="flex flex-col gap-4 justify-start items-start w-full">
+      <span className="text-xl font-semibold text-gray-800">
         Unidades disponibles:{" "}
         {productCart ? product.stock - productCart.quantity : product.stock}
       </span>
 
-      <div className="flex gap-2">
+      <div className="flex flex-col sm:flex-row gap-2 w-full">
         <Input
           type="number"
           value={quantity}
           onChange={handleChangeQuantity}
           min={1}
           max={product.stock}
-
+          className="w-full sm:w-auto"
         />
         {!cart.find((item) => item.id === product.id) && (
-          <Button onClick={handleAddToCart}
-          >Agregar al carrito</Button>
+          <Button onClick={handleAddToCart} className="w-full sm:w-auto">
+            Agregar al carrito
+          </Button>
         )}
         {cart.find((item) => item.id === product.id) && (
-          <Button onClick={handleRemoveFromCart} variant="destructive">
+          <Button onClick={handleRemoveFromCart} variant="destructive" className="w-full sm:w-auto">
             Remover del carrito
           </Button>
         )}
         <Button
           onClick={handleBuyNow}
-          className="bg-green-500 hover:bg-green-600"
+          className="bg-green-500 hover:bg-green-600 w-full sm:w-auto"
         >
           ¡Comprar ya!
         </Button>

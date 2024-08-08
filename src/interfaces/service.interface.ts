@@ -3,7 +3,7 @@ import { IProduct, IProductDetail } from "./products.interface";
 export interface IQueryParams {
   page: string;
   limit: string;
-  query?: string;
+  search?: string;
 }
 
 export interface IResponse<T> {
