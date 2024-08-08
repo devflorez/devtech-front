@@ -3,7 +3,8 @@
 import { Input } from "@/components/ui/input";
 import { ZodIssue } from "zod";
 import { errorMessages, findErrors } from "@/lib/utils";
-const DeliveryInvaluesation = ({
+
+const DeliveryInformation = ({
   values,
   onChange,
   errors,
@@ -31,9 +32,9 @@ const DeliveryInvaluesation = ({
   return (
     <div>
       <h2 className="text-lg font-semibold text-gray-800 mb-4">
-        Invaluesación de envío
+        Información de envío
       </h2>
-      <form className="grid grid-cols-2 gap-4">
+      <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="flex flex-col gap-2">
           <label
             htmlFor="fullName"
@@ -49,7 +50,7 @@ const DeliveryInvaluesation = ({
             value={values.fullName}
             onChange={onChange}
           />
-   {fullNameErrors.length > 0 && (
+          {fullNameErrors.length > 0 && (
             <span className="text-red-500 text-sm">
               {errorMessages(fullNameErrors)}
             </span>
@@ -71,13 +72,11 @@ const DeliveryInvaluesation = ({
             value={values.address}
             onChange={onChange}
           />
-          {
-            addressErrors.length > 0 && (
-              <span className="text-red-500 text-sm">
-                {errorMessages(addressErrors)}
-              </span>
-            )
-          }
+          {addressErrors.length > 0 && (
+            <span className="text-red-500 text-sm">
+              {errorMessages(addressErrors)}
+            </span>
+          )}
         </div>
 
         <div className="flex flex-col gap-2">
@@ -94,13 +93,11 @@ const DeliveryInvaluesation = ({
             value={values.addressDetails}
             onChange={onChange}
           />
-          {
-            addressDetailsErrors.length > 0 && (
-              <span className="text-red-500 text-sm">
-                {errorMessages(addressDetailsErrors)}
-              </span>
-            )
-          }
+          {addressDetailsErrors.length > 0 && (
+            <span className="text-red-500 text-sm">
+              {errorMessages(addressDetailsErrors)}
+            </span>
+          )}
         </div>
 
         <div className="flex flex-col gap-2">
@@ -115,13 +112,11 @@ const DeliveryInvaluesation = ({
             value={values.city}
             onChange={onChange}
           />
-          {
-            cityErrors.length > 0 && (
-              <span className="text-red-500 text-sm">
-                {errorMessages(cityErrors)}
-              </span>
-            )
-          }
+          {cityErrors.length > 0 && (
+            <span className="text-red-500 text-sm">
+              {errorMessages(cityErrors)}
+            </span>
+          )}
         </div>
 
         <div className="flex flex-col gap-2">
@@ -139,13 +134,11 @@ const DeliveryInvaluesation = ({
             onChange={onChange}
             value={values.state}
           />
-          {
-            stateErrors.length > 0 && (
-              <span className="text-red-500 text-sm">
-                {errorMessages(stateErrors)}
-              </span>
-            )
-          }
+          {stateErrors.length > 0 && (
+            <span className="text-red-500 text-sm">
+              {errorMessages(stateErrors)}
+            </span>
+          )}
         </div>
 
         <div className="flex flex-col gap-2">
@@ -163,13 +156,11 @@ const DeliveryInvaluesation = ({
             value={values.postalCode}
             onChange={onChange}
           />
-          {
-            postalCodeErrors.length > 0 && (
-              <span className="text-red-500 text-sm">
-                {errorMessages(postalCodeErrors)}
-              </span>
-            )
-          }
+          {postalCodeErrors.length > 0 && (
+            <span className="text-red-500 text-sm">
+              {errorMessages(postalCodeErrors)}
+            </span>
+          )}
         </div>
 
         <div className="flex flex-col gap-2">
@@ -187,17 +178,15 @@ const DeliveryInvaluesation = ({
             value={values.phone}
             onChange={onChange}
           />
-          {
-            phoneErrors.length > 0 && (
-              <span className="text-red-500 text-sm">
-                {errorMessages(phoneErrors)}
-              </span>
-            )
-          }
+          {phoneErrors.length > 0 && (
+            <span className="text-red-500 text-sm">
+              {errorMessages(phoneErrors)}
+            </span>
+          )}
         </div>
       </form>
     </div>
   );
 };
 
-export default DeliveryInvaluesation;
+export default DeliveryInformation;

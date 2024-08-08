@@ -8,7 +8,7 @@ const Stepper = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("flex space-x-8 items-center", className)} {...props} />
+  <div ref={ref} className={cn("flex sm:space-x-8  w-full flex-col sm:flex-row gap-2 justify-start sm:justify-center sm:items-center items-start", className)} {...props} />
 ));
 
 
@@ -47,7 +47,7 @@ const Step = ({
 
 const StepSeparator = () => {
   return (
-    <div className="flex items-center justify-center">
+    <div className=" items-center justify-center hidden sm:flex">
       <div className="h-0.5 w-20 bg-gray-300" />
     </div>
   );

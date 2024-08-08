@@ -39,30 +39,32 @@ const CheckoutContent = () => {
 
   return (
     <Fragment>
-      <header className="flex items-center justify-center gap-4 pb-4">
-        <Stepper>
+      <header className="flex flex-col items-center justify-center gap-4 pb-4 mx-4">
+        <Stepper
+        
+        >
           {STEPS.map((step, index) => (
             <Fragment key={index}>
               <Step
                 label={step.label}
                 icon={step.icon}
-                active={index <= currentStep ? true : false}
+                active={index <= currentStep}
               />
               {index < STEPS.length - 1 && <StepSeparator />}
             </Fragment>
           ))}
         </Stepper>
       </header>
-      {currentStep === 0 && <PaymentInformation
-        handleNextStep={handleNextStep}
-      />}
-      {currentStep === 1 && <PurchaseSummary
-        handleNextStep={handleNextStep}
-        handlePrevStep={handlePrevStep}
-      />}
-      {currentStep === 2 && <ConfirmationPayment
-
-      />}
+      {currentStep === 0 && (
+        <PaymentInformation handleNextStep={handleNextStep} />
+      )}
+      {currentStep === 1 && (
+        <PurchaseSummary
+          handleNextStep={handleNextStep}
+          handlePrevStep={handlePrevStep}
+        />
+      )}
+      {currentStep === 2 && <ConfirmationPayment />}
     </Fragment>
   );
 };
