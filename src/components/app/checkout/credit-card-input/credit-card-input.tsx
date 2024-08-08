@@ -65,6 +65,7 @@ const CreditCardInput: React.FC<CreditCardInputProps> = ({ onChange }) => {
         className="flex-grow outline-none bg-transparent text-sm px-2"
         placeholder="Enter your credit card number"
         maxLength={19} // Longitud máxima para "4444 4444 4444 4444"
+        name="cardNumber"
       />
     </div>
   );

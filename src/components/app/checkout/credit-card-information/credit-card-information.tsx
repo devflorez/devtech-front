@@ -8,7 +8,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { MONTHS, YEARS } from "@/lib/contants";
-
 import CreditCardInput from "../credit-card-input";
 import { errorMessages, findErrors } from "@/lib/utils";
 import { ZodIssue } from "zod";
@@ -17,7 +16,7 @@ const CreditCardInformation = ({
   values,
   onChange,
   errors,
-  onChangeSelect
+  onChangeSelect,
 }: {
   errors: ZodIssue[];
   values: {
@@ -76,7 +75,7 @@ const CreditCardInformation = ({
             </span>
           )}
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="flex flex-col gap-2">
             <label
               htmlFor="month"
@@ -152,6 +151,7 @@ const CreditCardInformation = ({
               onChange={onChange}
               value={values.cvv}
               maxLength={3}
+              name="cvv"
             />
             {cvvErrors.length > 0 && (
               <span className="text-red-500 text-sm">
