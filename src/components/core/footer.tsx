@@ -14,7 +14,7 @@ export default function footer() {
         >
           devflorez
         </a>{" "}
-        © {year}
+        © {year} v.1.0.0
       </p>
       <a href="https://github.com/devflorez/devtech-front"
         target="_blank"
