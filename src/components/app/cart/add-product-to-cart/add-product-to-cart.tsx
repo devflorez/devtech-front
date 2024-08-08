@@ -36,7 +36,7 @@ const AddProductToCart = ({ product }: { product: IProductDetail }) => {
 
   const handleBuyNow = () => {
     dispatch(addToCart({ product, quantity }));
-    router.push("/checkout"); // Reemplaza '/checkout' con la ruta a tu página de pago
+    router.push("/checkout");
   };
 
   const productCart = useAppSelector((state) =>
