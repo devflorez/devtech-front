@@ -3,7 +3,7 @@
 ## Descripción
 DevTech Store es una tienda de tecnología especializada en artículos esenciales para desarrolladores, incluyendo teclados ergonómicos, monitores de alta resolución, sillas cómodas y más. Encuentra todo lo que necesitas para crear tu espacio de trabajo ideal.
 
-[APP](https://develop.d3vjxvzp7bzyml.amplifyapp.com/)
+[APP](https://devtech-front-two.vercel.app/)
 
 ## Tabla de Contenidos
 - [DevTech Store](#devtech-store)
