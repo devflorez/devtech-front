@@ -4,6 +4,8 @@ import CreditCardInformation from "../credit-card-information";
 import DeliveryInformation from "../delivery-information";
 import zod from "zod";
 import { Button } from "@/components/ui/button";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { setCreditCard, setDeliveryInformation } from "@/redux/cart/slice-cart";
 
 const PaymentInformationSchema = zod.object({
   delivery: zod.object({
@@ -14,6 +16,14 @@ const PaymentInformationSchema = zod.object({
       .min(3, {
         message: "El nombre completo debe tener al menos 3 caracteres",
       }),
+    email: zod
+      .string({
+        message: "El correo electrónico es requerido",
+      })
+      .email({
+        message: "El correo electrónico no es válido",
+      }),
+
     address: zod
       .string({
         message: "La dirección es requerida",
@@ -66,7 +76,7 @@ const PaymentInformationSchema = zod.object({
       }),
   }),
   creditCard: zod.object({
-    fullName: zod.string({
+    cardHolder: zod.string({
       message: "El nombre del titular de la tarjeta es requerido",
     }),
     cardNumber: zod
@@ -85,7 +95,7 @@ const PaymentInformationSchema = zod.object({
     year: zod.string({
       message: "El año de expiración es requerido",
     }),
-    cvv: zod
+    cvc: zod
       .string({
         message: "El CVV es requerido",
       })
@@ -103,22 +113,25 @@ const PaymentInformation = ({
 }: {
   handleNextStep: () => void;
 }) => {
+  const cart = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
   const [form, setForm] = useState({
     delivery: {
-      fullName: "",
-      address: "",
-      addressDetails: "",
-      city: "",
-      state: "",
-      postalCode: "",
-      phone: "",
+      fullName: cart.deliveryInformation.fullName,
+      address: cart.deliveryInformation.address,
+      addressDetails: cart.deliveryInformation.addressDetails,
+      city: cart.deliveryInformation.city,
+      state: cart.deliveryInformation.state,
+      postalCode: cart.deliveryInformation.postalCode,
+      phone: cart.deliveryInformation.phone,
+      email: cart.deliveryInformation.email,
     },
     creditCard: {
-      fullName: "",
-      cardNumber: "",
-      month: "",
-      year: "",
-      cvv: "",
+      cardHolder: cart.creditCard.cardHolder,
+      cardNumber: cart.creditCard.cardNumber,
+      month: cart.creditCard.month,
+      year: cart.creditCard.year,
+      cvc: cart.creditCard.cvc,
     },
   });
   const [errors, setErrors] = useState<zod.ZodIssue[]>([]);
@@ -129,12 +142,11 @@ const PaymentInformation = ({
     const { name, value } = event.target;
     if (name === "cardNumber") {
       //ELIMINAR LO ESPACIOS EN BLANCO Y DEJAR SOLO LOS NÚMEROS
-      console.log(value);
       setForm((prev) => ({
         ...prev,
         creditCard: {
           ...prev.creditCard,
-          [name]:  value.replace(/\s/g, ''),
+          [name]: value.replace(/\s/g, ""),
         },
       }));
       return;
@@ -174,6 +186,8 @@ const PaymentInformation = ({
       const validated = PaymentInformationSchema.parse(form);
       if (!validated) return;
       handleNextStep();
+      dispatch(setCreditCard(form.creditCard));
+      dispatch(setDeliveryInformation(form.delivery));
     } catch (error) {
       if (error instanceof zod.ZodError) {
         console.log(error.errors);

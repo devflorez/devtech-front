@@ -28,7 +28,13 @@ const STEPS = [
     icon: <CheckFat size={24} />,
   },
 ];
-const CheckoutContent = () => {
+const CheckoutContent = ({
+  acceptanceToken,
+  link,
+}: {
+  acceptanceToken: string;
+  link: string;
+}) => {
   const [currentStep, setCurrentStep] = useState(0);
   const handleNextStep = () => {
     setCurrentStep((prev) => prev + 1);
@@ -62,6 +68,8 @@ const CheckoutContent = () => {
         <PurchaseSummary
           handleNextStep={handleNextStep}
           handlePrevStep={handlePrevStep}
+          acceptanceToken={acceptanceToken}
+          link={link}
         />
       )}
       {currentStep === 2 && <ConfirmationPayment />}

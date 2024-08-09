@@ -23,11 +23,22 @@ const CREDIT_CARD_TYPES: { [key: string]: JSX.Element } = {
 // Definición de las props del componente
 interface CreditCardInputProps {
   onChange: (event: ChangeEvent<HTMLInputElement>, cardType: string) => void;
+  value: string;
+  name: string;
 }
+ // Función para formatear el número de la tarjeta de crédito
+ const formatCreditCardNumber = (value: string): string => {
+  const cleaned = value.replace(/\D/g, ""); // Elimina caracteres no numéricos
+  const match = cleaned.match(/.{1,4}/g); // Agrupa los dígitos en bloques de 4
+  return match ? match.join(" ") : cleaned; // Une los bloques con un espacio
+};
 
-const CreditCardInput: React.FC<CreditCardInputProps> = ({ onChange }) => {
+
+const CreditCardInput: React.FC<CreditCardInputProps> = ({ onChange,value, name }) => {
   const [cardType, setCardType] = useState<string>("unknown");
-  const [cardNumber, setCardNumber] = useState<string>("");
+  const [cardNumber, setCardNumber] = useState<string>(formatCreditCardNumber(value));
+
+
 
   // Función que maneja el cambio en el número de la tarjeta de crédito
   const handleCardTypeChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -48,13 +59,7 @@ const CreditCardInput: React.FC<CreditCardInputProps> = ({ onChange }) => {
     onChange(event, detectedCardType);
   };
 
-  // Función para formatear el número de la tarjeta de crédito
-  const formatCreditCardNumber = (value: string): string => {
-    const cleaned = value.replace(/\D/g, ""); // Elimina caracteres no numéricos
-    const match = cleaned.match(/.{1,4}/g); // Agrupa los dígitos en bloques de 4
-    return match ? match.join(" ") : cleaned; // Une los bloques con un espacio
-  };
-
+ 
   return (
     <div className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
       {CREDIT_CARD_TYPES[cardType]} {/* Muestra el ícono correspondiente */}
@@ -65,7 +70,7 @@ const CreditCardInput: React.FC<CreditCardInputProps> = ({ onChange }) => {
         className="flex-grow outline-none bg-transparent text-sm px-2"
         placeholder="Enter your credit card number"
         maxLength={19} // Longitud máxima para "4444 4444 4444 4444"
-        name="cardNumber"
+        name={name}
       />
     </div>
   );

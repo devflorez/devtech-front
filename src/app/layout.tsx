@@ -5,6 +5,8 @@ import "./globals.css";
 import Header from "../components/core/header";
 import Footer from "@/components/core/footer";
 import ReduxWrapper from "@/redux/redux-wrapper";
+import WompiScript from "@/scripts/wompi";
+import { Toaster } from "@/components/ui/toaster"
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,11 +28,13 @@ export default function RootLayout({
         <ReduxWrapper>
           <Header />
           <main className="flex flex-col items-center justify-center w-full min-h-screen py-4">
-            <Suspense fallback={<div>Cargando...</div>}>
+            <Suspense>
             {children}
             </Suspense>
           </main>
           <Footer />
+          <WompiScript />
+          <Toaster />
         </ReduxWrapper>
       </body>
     </html>

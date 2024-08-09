@@ -11,6 +11,7 @@ import { MONTHS, YEARS } from "@/lib/contants";
 import CreditCardInput from "../credit-card-input";
 import { errorMessages, findErrors } from "@/lib/utils";
 import { ZodIssue } from "zod";
+import { useEffect, useState } from "react";
 
 const CreditCardInformation = ({
   values,
@@ -20,20 +21,29 @@ const CreditCardInformation = ({
 }: {
   errors: ZodIssue[];
   values: {
-    fullName: string;
+    cardHolder: string;
     cardNumber: string;
     month: string;
     year: string;
-    cvv: string;
+    cvc: string;
   };
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeSelect: (value: string, name: string) => void;
 }) => {
-  const fullNameErrors = findErrors("fullName", errors);
+  const cardHolderErrors = findErrors("cardHolder", errors);
   const cardNumberErrors = findErrors("cardNumber", errors);
   const monthErrors = findErrors("month", errors);
   const yearErrors = findErrors("year", errors);
-  const cvvErrors = findErrors("cvv", errors);
+  const cvcErrors = findErrors("cvc", errors);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <div>
@@ -49,15 +59,15 @@ const CreditCardInformation = ({
             Nombre del titular de la tarjeta
           </label>
           <Input
-            id="fullName"
+            id="cardHolder"
             placeholder="Nombre del titular de la tarjeta"
             onChange={onChange}
-            value={values.fullName}
-            name="fullName"
+            value={values.cardHolder}
+            name="cardHolder"
           />
-          {fullNameErrors.length > 0 && (
+          {cardHolderErrors.length > 0 && (
             <span className="text-red-500 text-sm">
-              {errorMessages(fullNameErrors)}
+              {errorMessages(cardHolderErrors)}
             </span>
           )}
         </div>
@@ -68,7 +78,10 @@ const CreditCardInformation = ({
           >
             Número de tarjeta
           </label>
-          <CreditCardInput onChange={onChange} />
+          <CreditCardInput onChange={onChange}
+            value={values.cardNumber}
+            name="cardNumber"
+          />
           {cardNumberErrors.length > 0 && (
             <span className="text-red-500 text-sm">
               {errorMessages(cardNumberErrors)}
@@ -146,16 +159,16 @@ const CreditCardInformation = ({
               CVV
             </label>
             <Input
-              id="cvv"
-              placeholder="CVV"
+              id="cvc"
+              placeholder="CVC"
               onChange={onChange}
-              value={values.cvv}
+              value={values.cvc}
               maxLength={3}
-              name="cvv"
+              name="cvc"
             />
-            {cvvErrors.length > 0 && (
+            {cvcErrors.length > 0 && (
               <span className="text-red-500 text-sm">
-                {errorMessages(cvvErrors)}
+                {errorMessages(cvcErrors)}
               </span>
             )}
           </div>

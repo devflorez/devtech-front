@@ -17,6 +17,7 @@ const DeliveryInformation = ({
     state: string;
     postalCode: string;
     phone: string;
+    email: string;
   };
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   errors: ZodIssue[];
@@ -28,6 +29,7 @@ const DeliveryInformation = ({
   const stateErrors = findErrors("state", errors);
   const postalCodeErrors = findErrors("postalCode", errors);
   const phoneErrors = findErrors("phone", errors);
+  const emailErrors = findErrors("email", errors);
 
   return (
     <div>
@@ -56,7 +58,27 @@ const DeliveryInformation = ({
             </span>
           )}
         </div>
-
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor="fullName"
+            className="text-sm font-semibold text-gray-800"
+          >
+            Correo electrónico 
+          </label>
+          <Input
+            type="text"
+            id="email"
+            name="email"
+            required
+            value={values.email}
+            onChange={onChange}
+          />
+          {emailErrors.length > 0 && (
+            <span className="text-red-500 text-sm">
+              {errorMessages(emailErrors)}
+            </span>
+          )}
+        </div>
         <div className="flex flex-col gap-2">
           <label
             htmlFor="address"

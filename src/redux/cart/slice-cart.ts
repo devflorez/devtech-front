@@ -9,13 +9,16 @@ export interface ICartState {
   cart: ICartProduct[];
   total: number;
   totalQuantity: number;
+  sessionId: string;
+  acceptanceToken: string;
   creditCard: {
-    fullName: string;
+    cardHolder: string;
     cardNumber: string;
     month: string;
     year: string;
-    cvv: string;
+    cvc: string;
   };
+
   deliveryInformation: {
     fullName: string;
     address: string;
@@ -24,6 +27,7 @@ export interface ICartState {
     state: string;
     postalCode: string;
     phone: string;
+    email: string;
   };
 }
 
@@ -31,12 +35,14 @@ export const INITIAL_STATE_CART: ICartState = {
   cart: [],
   total: 0,
   totalQuantity: 0,
+  sessionId: "",
+  acceptanceToken: "",
   creditCard: {
-    fullName: "",
+    cardHolder: "",
     cardNumber: "",
     month: "",
     year: "",
-    cvv: "",
+    cvc: "",
   },
   deliveryInformation: {
     fullName: "",
@@ -46,6 +52,7 @@ export const INITIAL_STATE_CART: ICartState = {
     state: "",
     postalCode: "",
     phone: "",
+    email: "",
   },
 };
 
@@ -145,10 +152,17 @@ const cartSlice = createSlice({
     ) => {
       state.deliveryInformation = action.payload;
     },
+    setSessionId: (state, action: PayloadAction<string>) => {
+      state.sessionId = action.payload;
+    },
+
+    setAcceptanceToken: (state, action: PayloadAction<string>) => {
+      state.acceptanceToken = action.payload;
+    },
   },
 });
 
-export const { addToCart, removeFromCart, updateQuantity, clearCart } =
+export const { addToCart, removeFromCart, updateQuantity, clearCart, setAcceptanceToken, setSessionId, setCreditCard, setDeliveryInformation } =
   cartSlice.actions;
 
 export default cartSlice.reducer;
