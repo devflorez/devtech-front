@@ -23,6 +23,7 @@ export interface IResponse<T> {
 export interface Customer {
   name: string;
   email: string;
+  phoneNumber: string;
 }
 
 export interface ProductTransaction {
@@ -42,9 +43,10 @@ export interface ICreateTransaction {
   customer: Customer;
   productTransactions: ProductTransaction[];
   shipment: Shipment;
+  total: number;
 }
 
-export interface IcreatePayment {
+export interface ICreatePayment {
   acceptance_token: string;
   payment_method: {
     type: string;
@@ -70,8 +72,38 @@ export interface IPresignedAcceptance {
   type: string;
 }
 
+export interface ITokenCard {
+    id: string
+    created_at: string
+    brand: string
+    name: string
+    last_four: string
+    bin: string
+    exp_year: string
+    exp_month: string
+    card_holder: string
+    expires_at: string
+}
+
+export  interface ITransaction {
+  id: number
+  customerId: number
+  quantity: number
+  total: number
+  status: string
+  productTransactions: ProductTransaction[]
+}
+
+export interface ProductTransaction {
+  productId: number
+  quantity: number
+}
+
+
 export type TProductsResponse = IResponse<IProduct[]>;
 
 export type TProductResponse = IResponse<IProductDetail>;
 
 export type TAcceptanceTokenResponse = IResponse<IPresignedAcceptance>;
+export type TTokenCardResponse = IResponse<ITokenCard |null>;
+export type TTransactionResponse = IResponse<ITransaction | null>;

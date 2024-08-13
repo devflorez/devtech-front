@@ -1,7 +1,8 @@
 import {
   TAcceptanceTokenResponse,
-  IPresignedAcceptance,
   ITokenCardData,
+  ICreatePayment,
+  TTokenCardResponse,
 } from "@/interfaces/service.interface";
 
 const API_URL_PAYMENTS = process.env.API_URL + "/v1/payments";
@@ -13,9 +14,10 @@ export async function getAcceptanceToken(): Promise<TAcceptanceTokenResponse> {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-cache",
     });
 
-    const data = (await response.json()) as IPresignedAcceptance;
+    const data = await response.json();
     if (!response.ok) {
       return {
         success: false,
@@ -46,7 +48,9 @@ export async function getAcceptanceToken(): Promise<TAcceptanceTokenResponse> {
   }
 }
 
-export async function createTokenCard(data: ITokenCardData) {
+export async function createTokenCard(
+  data: ITokenCardData
+): Promise<TTokenCardResponse> {
   try {
     const response = await fetch(`${API_URL_PAYMENTS}/token`, {
       method: "POST",
@@ -64,12 +68,51 @@ export async function createTokenCard(data: ITokenCardData) {
       success: true,
       data: responseData,
       error: "",
-    
-    }
+    };
   } catch (error) {
     return {
       success: false,
-      data: "",
+      data: null,
+      error: (error as Error).message,
+    };
+  }
+}
+
+export async function createPayment(data: ICreatePayment) {
+  try {
+    const response = await fetch(`${API_URL_PAYMENTS}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      return {
+        success: false,
+        data: {
+          payment_id: "",
+          status: "",
+        },
+        error: "Error creating payment",
+      };
+    }
+
+    return {
+      success: true,
+      data: responseData,
+      error: "",
+    };
+  } catch (error) {
+    return {
+      success: false,
+      data: {
+        payment_id: "",
+        status: "",
+      },
       error: (error as Error).message,
     };
   }

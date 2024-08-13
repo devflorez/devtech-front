@@ -180,7 +180,6 @@ const PaymentInformation = ({
       },
     }));
   };
-  console.log(form);
   const handleContinue = () => {
     try {
       const validated = PaymentInformationSchema.parse(form);
@@ -190,7 +189,6 @@ const PaymentInformation = ({
       dispatch(setDeliveryInformation(form.delivery));
     } catch (error) {
       if (error instanceof zod.ZodError) {
-        console.log(error.errors);
         setErrors(error.errors);
       }
     }

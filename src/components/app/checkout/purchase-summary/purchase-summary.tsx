@@ -8,50 +8,27 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useAppDispatch } from "@/redux/hooks";
 import { setAcceptanceToken } from "@/redux/cart/slice-cart";
 import Loading from "@/components/core/loading";
-import { createTokenCardAction } from "@/actions/payment.action";
-import { useToast } from "@/components/ui/use-toast";
+
 
 const PurchaseSummary = ({
-  handleNextStep,
+  handlePayment,
   handlePrevStep,
   acceptanceToken,
   link,
+  loading
 }: {
-  handleNextStep: () => void;
+  handlePayment: () => void;
   handlePrevStep: () => void;
   acceptanceToken: string;
   link: string;
+  loading: boolean;
 }) => {
   const cart = useAppSelector((state) => state.cart);
   const [accepted, setAccepted] = useState(false);
-  const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
-  const { toast } = useToast()
 
-  const handlePayment = async () => {
-    setLoading(true);
-    const token = await createTokenCardAction(
-      {
-        card_holder: cart.creditCard.cardHolder,
-        number: cart.creditCard.cardNumber,
-        exp_month: cart.creditCard.month,
-        exp_year: cart.creditCard.year,
-        cvc: cart.creditCard.cvc,
-      }
-    );
-    if(!token.success){
-      setLoading(false);
-      toast({
-        title: "No se pudo realizar el pago",
-        description: token.message,
-      });
-      return;
-    }
-    if(token.success){
-      setLoading(false);
-      handleNextStep();
-    }
-  }
+
+ 
 
   return (
     <div className="max-w-6xl w-full mx-auto p-4">
@@ -106,7 +83,7 @@ const PurchaseSummary = ({
         <Button
           className="sm:w-auto w-full"
           onClick={handlePayment}
-          disabled={!accepted || loading}
+          disabled={!accepted || loading || cart.cart.length === 0}
         >
         {loading ? <Loading /> : "Pagar"}
         </Button>

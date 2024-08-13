@@ -23,7 +23,6 @@ export async function getProducts(
       }
     );
     const data = await response.json();
-    console.log("Response product", data);
     if (!response.ok) {
       return {
         success: false,

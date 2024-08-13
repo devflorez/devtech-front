@@ -1,10 +1,10 @@
-import { ICreateTransaction } from "@/interfaces/service.interface";
+import { ICreateTransaction, TTransactionResponse } from "@/interfaces/service.interface";
 
 
 const API_URL_TRANSACTIONS = process.env.API_URL + "/v1/transactions";
 
 
-export async function createTransaction(data: ICreateTransaction) {
+export async function createTransaction(data: ICreateTransaction):Promise<TTransactionResponse> {
   try {
     const response = await fetch(`${API_URL_TRANSACTIONS}`, {
       method: "POST",
@@ -18,10 +18,7 @@ export async function createTransaction(data: ICreateTransaction) {
     if (!response.ok) {
       return {
         success: false,
-        data: {
-          transaction_id: "",
-          status: "",
-        },
+        data: responseData,
         error: "Error creating transaction",
       };
     }
@@ -34,10 +31,7 @@ export async function createTransaction(data: ICreateTransaction) {
   } catch (error) {
     return {
       success: false,
-      data: {
-        transaction_id: "",
-        status: "",
-      },
+      data: null,
       error: (error as Error).message,
     };
   }

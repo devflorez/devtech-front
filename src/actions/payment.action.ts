@@ -1,6 +1,6 @@
 "use server";
-import { ITokenCardData } from "@/interfaces/service.interface";
-import { createTokenCard } from "@/services/payments.service";
+import { ICreatePayment, ITokenCardData } from "@/interfaces/service.interface";
+import { createPayment, createTokenCard } from "@/services/payments.service";
 import z from "zod";
 
 const CreateTokenCardSchema = z.object({
@@ -36,6 +36,34 @@ const CreateTokenCardSchema = z.object({
     .max(4, "CVC debe tener máximo 4 caracteres"),
 });
 
+const CreatePaymentSchema = z.object({
+  acceptance_token: z
+    .string({
+      message: "Token de aceptación es requerido",
+    })
+    .min(3),
+  payment_method: z.object({
+    type: z.string({
+      message: "Tipo de pago es requerido",
+    }),
+    token: z.string({
+      message: "Token de pago es requerido",
+    }),
+    installments: z.number({
+      message: "Número de cuotas es requerido",
+    }),
+  }),
+  session_id: z
+    .string({
+      message: "ID de sesión es requerido",
+    })
+    .min(3)
+    .max(255),
+  transaction_id: z.number({
+    message: "ID de transacción es requerido",
+  }),
+});
+
 export async function createTokenCardAction(payment: ITokenCardData) {
   const validation = CreateTokenCardSchema.safeParse(payment);
   if (!validation.success) {
@@ -45,8 +73,7 @@ export async function createTokenCardAction(payment: ITokenCardData) {
     };
   }
   const response = await createTokenCard(payment);
-  console.log(response, "response");
-  if(!response.success){
+  if (!response.success) {
     return {
       success: false,
       message: "Verifica los datos de la tarjeta",
@@ -54,6 +81,33 @@ export async function createTokenCardAction(payment: ITokenCardData) {
   }
   return {
     success: true,
-    message: "Token creado correctamente"
+    message: "Token creado correctamente",
+    data: response.data,
+  };
+}
+
+export async function createPaymentAction(payment: ICreatePayment) {
+  const validation = CreatePaymentSchema.safeParse(payment);
+
+  if (!validation.success) {
+    return {
+      success: false,
+      message: validation.error.errors.map((error) => error.message).join(", "),
+    };
+  }
+
+  const response = await createPayment(payment);
+
+  if (!response.success) {
+    return {
+      success: false,
+      message: "Verifica los datos de la transacción",
+    };
+  }
+
+  return {
+    success: true,
+    message: "Pago creado correctamente",
+    data: payment,
   };
 }
