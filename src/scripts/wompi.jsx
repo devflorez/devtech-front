@@ -13,6 +13,7 @@ const WompiScript = () => {
     <Script
       src="https://cdn.wompi.co/libs/js/v1.js"
       data-public-key={PUBLIC_KEY}
+      strategy="lazyOnload"
       onLoad={() => {
         if (window.$wompi) {
           window.$wompi.initialize((data, error) => {

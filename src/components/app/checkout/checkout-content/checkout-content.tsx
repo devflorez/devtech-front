@@ -91,6 +91,8 @@ const CheckoutContent = ({
       cvc: cart.creditCard.cvc,
     });
 
+    console.log("RESPONSE TOKEN", token);
+
     if (!token.success || !token.data) {
       setLoading(false);
       setStatus("ERROR");
@@ -127,6 +129,8 @@ const CheckoutContent = ({
       total: cart.total,
     });
 
+    console.log("RESPONSE TRANSACTION", transaction);
+
 
 
     if (!transaction.success || !transaction.data) {
@@ -153,6 +157,8 @@ const CheckoutContent = ({
       transaction_id: transaction.data.id,
     });
 
+
+    console.log("RESPONSE PAYMENT", payment);
 
     if (payment.success) {
       setStatus("SUCCESS");
