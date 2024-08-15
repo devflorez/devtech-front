@@ -28,7 +28,11 @@ const Product = ({
         <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
         <p className="text-gray-600">{shortDescription}</p>
         <p className="text-gray-800 font-semibold">{formatPrice(price)}</p>
-        <p className="text-gray-500">{stock} unidades disponibles</p>
+        {stock && stock > 0 ? (
+          <p className="text-gray-500">{stock} unidades disponibles</p>
+        ) : (
+          <p className="text-red-500">Agotado</p>
+        )}
       </div>
     </Link>
   );

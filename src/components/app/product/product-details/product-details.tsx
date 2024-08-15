@@ -7,8 +7,8 @@ import { formatPrice } from "@/lib/utils";
 async function ProductDetails({ slug }: { slug: string }) {
   const { data } = await getProductBySlug(slug);
 
-  if(!data) {
-    return <div>Product not found</div>
+  if (!data) {
+    return <div>Product not found</div>;
   }
 
   return (
@@ -27,7 +27,13 @@ async function ProductDetails({ slug }: { slug: string }) {
 
         <p>{data.description}</p>
         <footer className="flex flex-col gap-2 justify-start items-start border-t border-gray-200 pt-4 w-full">
-          <AddProductToCart product={data} />
+          {
+            data.stock && data.stock > 0 ? (
+              <AddProductToCart product={data} />
+            ) : (
+              <p className="text-red-500">Agotado</p>
+            )
+          }
         </footer>
       </div>
     </section>

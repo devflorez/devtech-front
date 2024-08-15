@@ -5,7 +5,7 @@ import { getAcceptanceToken } from "@/services/payments.service";
 export const maxDuration = 60;
 export default async function Checkout() {
   const response = await getAcceptanceToken();
-  console.log(response);
+
 
   if (!response.success) {
     return (
