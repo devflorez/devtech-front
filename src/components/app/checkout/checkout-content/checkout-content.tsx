@@ -127,6 +127,8 @@ const CheckoutContent = ({
         country: "CO",
       },
       total: cart.total,
+      subTotal: cart.subTotal,
+      totalIva: cart.totalIva,
     });
 
     console.log("RESPONSE TRANSACTION", transaction);

@@ -18,7 +18,6 @@ export async function getAcceptanceToken(): Promise<TAcceptanceTokenResponse> {
     });
 
     const data = await response.json();
-    console.log(data);
     if (!response.ok) {
       return {
         success: false,

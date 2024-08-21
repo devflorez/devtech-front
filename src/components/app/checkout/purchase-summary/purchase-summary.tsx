@@ -9,13 +9,12 @@ import { useAppDispatch } from "@/redux/hooks";
 import { setAcceptanceToken } from "@/redux/cart/slice-cart";
 import Loading from "@/components/core/loading";
 
-
 const PurchaseSummary = ({
   handlePayment,
   handlePrevStep,
   acceptanceToken,
   link,
-  loading
+  loading,
 }: {
   handlePayment: () => void;
   handlePrevStep: () => void;
@@ -26,9 +25,6 @@ const PurchaseSummary = ({
   const cart = useAppSelector((state) => state.cart);
   const [accepted, setAccepted] = useState(false);
   const dispatch = useAppDispatch();
-
-
- 
 
   return (
     <div className="max-w-6xl w-full mx-auto p-4">
@@ -63,7 +59,10 @@ const PurchaseSummary = ({
         </div>
         <ul className="flex flex-col justify-end items-end gap-4 text-lg text-gray-800 mt-4">
           <li>
-            Subtotal: <strong>{formatPrice(cart.total)}</strong>
+            Subtotal: <strong>{formatPrice(cart.subTotal)}</strong>
+          </li>
+          <li>
+            Total Iva: <strong>{formatPrice(cart.totalIva)}</strong>
           </li>
           <li>Envío: Gratis</li>
           <li>
@@ -85,7 +84,7 @@ const PurchaseSummary = ({
           onClick={handlePayment}
           disabled={!accepted || loading || cart.cart.length === 0}
         >
-        {loading ? <Loading /> : "Pagar"}
+          {loading ? <Loading /> : "Pagar"}
         </Button>
       </footer>
     </div>

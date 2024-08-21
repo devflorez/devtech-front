@@ -8,9 +8,12 @@ export interface ICartProduct extends IProduct {
 export interface ICartState {
   cart: ICartProduct[];
   total: number;
+  subTotal: number;
   totalQuantity: number;
   sessionId: string;
   acceptanceToken: string;
+  iva: number;
+  totalIva: number;
   creditCard: {
     cardHolder: string;
     cardNumber: string;
@@ -18,7 +21,6 @@ export interface ICartState {
     year: string;
     cvc: string;
   };
-
   deliveryInformation: {
     fullName: string;
     address: string;
@@ -34,9 +36,12 @@ export interface ICartState {
 export const INITIAL_STATE_CART: ICartState = {
   cart: [],
   total: 0,
+  subTotal: 0,
   totalQuantity: 0,
   sessionId: "",
   acceptanceToken: "",
+  iva: 0.19,
+  totalIva: 0,
   creditCard: {
     cardHolder: "",
     cardNumber: "",
@@ -90,7 +95,7 @@ const cartSlice = createSlice({
         state.cart.push({ ...product, quantity });
       }
 
-      state.total = state.cart.reduce(
+      state.subTotal = state.cart.reduce(
         (acc, item) => acc + item.price * item.quantity,
         0
       );
@@ -98,6 +103,8 @@ const cartSlice = createSlice({
         (acc, item) => acc + item.quantity,
         0
       );
+      state.totalIva = state.subTotal * state.iva;
+      state.total = state.subTotal + state.totalIva;
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
       const productIndex = state.cart.findIndex(
@@ -106,7 +113,7 @@ const cartSlice = createSlice({
 
       if (productIndex !== -1) {
         state.cart.splice(productIndex, 1);
-        state.total = state.cart.reduce(
+        state.subTotal = state.cart.reduce(
           (acc, item) => acc + item.price * item.quantity,
           0
         );
@@ -114,6 +121,8 @@ const cartSlice = createSlice({
           (acc, item) => acc + item.quantity,
           0
         );
+        state.totalIva = state.subTotal * state.iva;
+        state.total = state.subTotal + state.totalIva;
       }
     },
     updateQuantity: (
@@ -133,12 +142,16 @@ const cartSlice = createSlice({
           (acc, item) => acc + item.quantity,
           0
         );
+        state.totalIva = state.total * state.iva;
+        state.total = state.total + state.totalIva;
       }
     },
     clearCart: (state) => {
       state.cart = [];
       state.total = 0;
       state.totalQuantity = 0;
+      state.subTotal = 0;
+      state.totalIva = 0;
     },
     setCreditCard: (
       state,
